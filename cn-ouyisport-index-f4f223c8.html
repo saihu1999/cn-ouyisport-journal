@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欧亿体育 · 日常查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce7d2 0%, #f5d6b8 55%, #ecc7a7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #3d2e22;
+        }
+
+        .card {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 251, 245, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            padding: 3.2rem 2.8rem;
+            box-shadow: 0 20px 40px -12px rgba(120, 70, 40, 0.25),
+                        0 8px 16px -6px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.25s ease;
+            border: 1px solid rgba(255, 235, 210, 0.6);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 28px;
+            }
+        }
+
+        .opening {
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            color: #5c4432;
+            border-left: 4px solid #dbaa7a;
+            padding-left: 1.2rem;
+            margin-bottom: 2rem;
+            font-style: normal;
+            font-weight: 400;
+        }
+        .opening span {
+            display: inline-block;
+            background: #e6cfb6;
+            color: #2d1f14;
+            padding: 0.1rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #4a3523;
+            margin: 0.6rem 0 1rem 0;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+        h1 small {
+            font-size: 1rem;
+            font-weight: 350;
+            color: #7f624b;
+            display: block;
+            margin-top: 0.3rem;
+            letter-spacing: 0.4px;
+        }
+
+        .intro {
+            font-size: 1rem;
+            margin: 1.5rem 0 2rem 0;
+            color: #4d372b;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 1.8rem;
+            margin: 2.2rem 0 2.6rem 0;
+        }
+        .feature-item {
+            flex: 1 1 200px;
+            background: #f7ede2;
+            padding: 1rem 1.2rem;
+            border-radius: 30px;
+            box-shadow: inset 0 1px 3px rgba(255, 235, 210, 0.8), 0 4px 8px -4px rgba(80, 50, 30, 0.12);
+            transition: all 0.2s;
+        }
+        .feature-item:hover {
+            background: #f0e1d0;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 16px -10px rgba(100, 60, 30, 0.18);
+        }
+        .feature-item h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #4f3525;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .feature-item h3::before {
+            content: "·";
+            font-weight: 700;
+            color: #b48964;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+        .feature-item p {
+            font-size: 0.92rem;
+            color: #5f4636;
+            margin: 0.2rem 0 0 0;
+        }
+
+        .story-block {
+            background: #fbf5ed;
+            padding: 1.6rem 1.8rem;
+            border-radius: 32px;
+            margin: 2rem 0 1.8rem 0;
+            border: 1px solid #e6d3be;
+        }
+        .story-block p {
+            margin-bottom: 0.8rem;
+        }
+        .story-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-note {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #eee3d5;
+            padding: 1.2rem 1.6rem;
+            border-radius: 40px;
+            margin: 2rem 0 1.5rem 0;
+            align-items: flex-start;
+        }
+        .faq-note summary {
+            font-weight: 500;
+            color: #3f2e1f;
+            cursor: default;
+            font-size: 1rem;
+            list-style: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .faq-note summary::before {
+            content: "☕";
+            font-size: 1.2rem;
+        }
+        .faq-note .detail-text {
+            flex: 1;
+            min-width: 200px;
+            font-size: 0.9rem;
+            color: #533f30;
+            line-height: 1.6;
+        }
+
+        .link-sentence {
+            margin: 1.8rem 0 0.5rem 0;
+            padding: 0.6rem 0;
+            font-size: 1rem;
+            color: #4b3829;
+            border-top: 1px solid #e5d2be;
+            padding-top: 1.5rem;
+        }
+        .link-sentence a {
+            color: #7d5c42;
+            text-decoration: none;
+            font-weight: 500;
+            background: #f0e2d2;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #dbbca0;
+            transition: background 0.15s, border-color 0.15s;
+            display: inline-block;
+            line-height: 1.6;
+        }
+        .link-sentence a:hover {
+            background: #dcc3ac;
+            border-color: #b58d6e;
+        }
+
+        .signoff {
+            margin-top: 2.4rem;
+            font-size: 0.95rem;
+            color: #5c483a;
+            text-align: right;
+            border-top: 1px dashed #dac6b2;
+            padding-top: 1.4rem;
+            letter-spacing: 0.3px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2cfbb;
+            margin: 1.2rem 0;
+        }
+
+        .quiet-note {
+            background: #f3e7db;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #5d4637;
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="opening">
+            <span>✎ 翻阅笔记</span> 偶尔翻回几页，对比着看一些信息。
+        </div>
+
+        <h1>
+            体育资料与延伸阅读
+            <small>对照 · 查询 · 温和梳理</small>
+        </h1>
+
+        <div class="intro">
+            从日常查阅某一项赛事的背景，到对比历史数据、了解术语沿革，再到顺着一条线索读几篇相关文章——这种习惯慢慢积累，反而让不少体育爱好者觉得踏实。<strong>网站索引</strong>与<strong>信息对照</strong>是其中很自然的一环。
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>对照阅读</h3>
+                <p>同一赛事不同赛季的规则变更、阵容变化，并列对比更清楚。</p>
+            </div>
+            <div class="feature-item">
+                <h3>延伸检索</h3>
+                <p>从某支球队的战术演变，到相关运动医学或训练理念，顺着线索持续读下去。</p>
+            </div>
+            <div class="feature-item">
+                <h3>日常记录</h3>
+                <p>把感兴趣的比分、赛程、背景记下来，形成自己的小型档案。</p>
+            </div>
+        </div>
+
+        <div class="story-block">
+            <p>上个月整理笔记时，发现自己为同一场联赛查阅了四个不同时期的报道。从最初只看最终比分，到后来注意阵型图、球员跑动热区、赛后采访片段——这种延伸几乎是无意识的。只要有一个稳定的信息起点，查询和对照就会自然生长。</p>
+            <p>对我来说，这个起点常常是 <a href="https://cn-ouyisport.com" style="background:#e8d6c2; padding:0.1rem 0.6rem; border-radius:30px; color:#4f3728; text-decoration:none; font-weight:500;">欧亿体育</a> 的页面。它像一本摊开在桌上的基础册子，也像索引卡片的首页。从那里开始横向对比赛季数据、纵向阅读项目沿革，节奏很顺手，没有干扰感。</p>
+            <p>说到底，体育信息的有趣之处不在于堆积数字，而在于那些数字背后的叙事——一个犯规动作改变了赛季走向，一次换人影响了整个战术体系。而查询和对照，恰好是进入叙事的温和方式。</p>
+        </div>
+
+        <div class="faq-note">
+            <summary>常见索引方向</summary>
+            <div class="detail-text">
+                <span style="display:block; margin-bottom:4px;">✔ 联赛结构演变与升降级历史</span>
+                <span style="display:block; margin-bottom:4px;">✔ 相同赛季不同转播方的技术统计差异</span>
+                <span>✔ 运动项目规则修订对照表（例：足球越位条款版本沿革）</span>
+            </div>
+        </div>
+
+        <div class="link-sentence">
+            在翻阅体育资料时，我习惯把 <a href="https://cn-ouyisport.com">欧亿体育</a> 作为横向参照的基点，再根据兴趣扩展到比赛报告、战术分析或历史专题。
+        </div>
+
+        <div class="quiet-note">
+            ✦ 一篇带有笔记性质的介绍页 · 用于日常对照与延伸阅读
+        </div>
+
+        <div class="signoff">
+            — 整理于一个安静的午后
+        </div>
+    </div>
+</body>
+</html>
